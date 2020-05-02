@@ -1,0 +1,61 @@
+<!--use:_views/m.mailing-->
+
+<!--define:main-->
+<table style="width:100%;border-spacing:0;border-collapse:collapse;margin-top:20px;">
+	<tr>
+		<td>
+			<h1 style="font-size:32px;line-height:40px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#000000;">{{data:doc.title}}</h1>
+			<div style="width:100%;padding:10px;border-top:1px solid #898989;border-bottom:1px solid #898989;">
+				<table style="width:100%;border-spacing:0;border-collapse:collapse;font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989">
+					<tbody>
+						<tr>
+							<td style="width:1px;padding-bottom:50px"></td>
+							<td></td>
+							<td>Producto</td>
+							<td style="text-align:right">Cantidad</td>
+							<td style="text-align:right">Precio</td>
+							<td style="text-align:right">Total</td>
+						</tr>
+						<!--repeat:doc.product-->
+						<tr>
+							<td style="width:1px;padding-bottom:50px"></td>
+							<td><img src="{{data:doc.product[index].img}}" height="50px" /></td>
+							<td>{{data:doc.product[index].title}}</td>
+							<td style="text-align:right">{{data:doc.product[index].cant}}</td>
+							<td style="text-align:right">{{data:doc.product[index].price}}</td>
+							<td style="text-align:right">{{data:doc.product[index].total}}</td>
+						</tr>
+						<!--/repeat:doc.product-->
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" style="width:1px;padding-bottom:50px"></td>
+							<td>Total</td>
+							<td style="text-align:right;font-size:24px;">{{data:doc.total}}</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<p style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989">
+				Correo: {{data:doc.email}}
+			</p>
+			<!--if:doc.phone-->
+			<p style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989">
+				Fono: {{data:doc.phone}}
+			</p>
+			<!--/if-->
+			<p style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989">
+				{{data:doc.message}}
+			</p>
+			<br/>
+			<!--repeat:doc.btn-->
+			<strong style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989;margin-top:50px;margin-bottom:50px;{{data:doc.btn[index].style}}">
+				<a href="{{data:doc.btn[index].href}}">{{data:doc.btn[index].label}}</a>
+			</strong>
+			<br/>
+			<!--/repeat:doc.btn-->
+			
+		</td>
+	</tr>
+</table>
+<!--/define:main-->

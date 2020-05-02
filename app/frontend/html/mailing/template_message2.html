@@ -1,0 +1,16 @@
+<!--use:_views/m.mailing-->
+
+<!--define:main-->
+<table style="width:100%;border-spacing:0;border-collapse:collapse;margin-top:20px;">
+	<tr>
+		<td>
+			<h1 style="font-size:32px;line-height:40px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#000000;">{{data:doc.title}}</h1>
+			<p style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989">{{data:doc.nickname}}, {{data:doc.parrafo}}</p>
+			<img src="{{data:doc.img}}" style="width:100%;margin:auto;margin-top:25px;margin-bottom:25px;" height="200"/>
+			<p style="font-size:14px;line-height:20px;font-family:'HelveticaNeue-Light','Helvetica Neue Light',Helvetica,Arial,sans-serif;color:#898989;margin-top:50px;margin-bottom:50px;">
+				<small>Para ver el contenido pinche <a href="{{data:doc.uri}}">aquí</a></small>
+			</p>
+		</td>
+	</tr>
+</table>
+<!--/define:main-->
