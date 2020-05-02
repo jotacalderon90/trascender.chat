@@ -56,11 +56,11 @@ app.controller("chatCtrl", function(trascender,$scope){
 			img.title = data.nickname;
 			let p = document.createElement("p");
 			p.innerHTML = ((data.msg!="")?data.msg:data.msgb);
-			let s = document.createElement("small");
-			s.innerHTML =  moment(new Date(data.time)).format("dddd, MMMM Do YYYY, h:mm:ss a");
-			p.appendChild(s);
+			//let s = document.createElement("small");
+			//s.innerHTML =  moment(new Date(data.time)).format("ddd, hA");
 			li.appendChild(img);
 			li.appendChild(p);
+			//li.appendChild(s);
 			c.insertBefore(li, c.firstChild);
 		}
 	});	

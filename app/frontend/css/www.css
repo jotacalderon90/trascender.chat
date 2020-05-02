@@ -119,6 +119,9 @@ html,body{
 }
 #chat .list-group-item{
 	background: inherit;
+	border: 0px;
+	padding-bottom: 25px;
+	border-bottom: 1px solid grey;
 }
 #chat .list-group-item p{
 	font-size: 14px;
@@ -134,6 +137,12 @@ html,body{
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
+#chat .list-group-item p{
+	font-size: 16px;
+}
 #chat .list-group-item small{
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 12px;
 }

@@ -61,7 +61,7 @@
 					</audio>
 				</div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
+                    <input type="text" maxlength="100" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
                     <ul class="list-group" id="chat">
                     </ul>
                 </div>
