@@ -54,17 +54,6 @@ let trascender = async function(){
 			this.server		= http.Server(this.express);
 			
 			this.render = new render(this, __dirname + "/app/frontend/html/");
-			
-			let libs = fs.readdirSync("./app/backend/lib","utf8").filter(function(row){
-				return fs.statSync(path.join("./app/backend/lib",row)).isFile();
-			});
-			
-			for(let i=0;i<libs.length;i++){
-				let l = libs[i].replace(".js","");
-				console.log(new Date() + " == instanciando libreria " + l);
-				this[l]	= new(require("./app/backend/lib/" + l))(this);
-			}
-			
 		}
 		
 		//definir funciones internas propias de trascender
