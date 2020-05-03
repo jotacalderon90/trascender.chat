@@ -11,8 +11,8 @@ let self = function(application,params){
 self.prototype.manifest = async function(req,res){
 	res.set('Content-Type','text/json');
 	res.send({ 
-		"name": "PWA - Trascender",
-		"short_name": "PWA - Trascender",
+		"name": "PWA - Trascender Chat",
+		"short_name": "TR.CHAT",
 		"start_url": "/",
 		"display": "standalone",
 		"orientation": "portrait",
