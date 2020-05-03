@@ -4,11 +4,22 @@ app.controller("chatCtrl", function(trascender,$scope){
 	
 	this.chat = new trascender({
 		start: function(){
+			let url = new URL(location.href);
+			let n = url.searchParams.get("n");
+			let p = url.searchParams.get("p");
+			
 			this.user = {
-				nickname: "anonymous",
-				password: "secret",
+				nickname: (n!=null)?n:"anonymous",
+				password: (p!=null)?p:"secret",
 				thumb: "/media/img/logo.png"
 			}
+			
+			if(n!=null && p!=null){
+				$("header,main,footer,#dvChat1").fadeOut();
+				$("#dvChat2").fadeIn();
+				this.private = true;
+			}
+			
 			this.message = "";
 			if(host.indexOf("localhost")>-1){
 				this.socket = io({transports: ['websocket']});
@@ -33,12 +44,16 @@ app.controller("chatCtrl", function(trascender,$scope){
 			}
 		},
 		receive: function(data){
-			console.log(data);
+			//console.log(data);
 			data.msgb= data.msg;
 			data.msg = $.jCryption.decrypt(data.msg, this.user.password);
 			data.msg = atob(data.msg);
-			this.pushMSG(data);
-			document.getElementById("blop").play();
+			if(this.private && data.msg==""){
+				
+			}else{
+				this.pushMSG(data);
+				document.getElementById("blop").play();
+			}
 		},
 		pushMSG: function(data){
 			this.n = "";
@@ -48,6 +63,7 @@ app.controller("chatCtrl", function(trascender,$scope){
 			this.n += '</li>';
 			
 			let c = document.getElementById("chat");
+			let c2 = document.getElementById("chat2");
 			
 			let li = document.createElement("li");
 			li.setAttribute("class","list-group-item");
@@ -62,6 +78,34 @@ app.controller("chatCtrl", function(trascender,$scope){
 			li.appendChild(p);
 			//li.appendChild(s);
 			c.insertBefore(li, c.firstChild);
+			c2.appendChild(li);
+			$('#chat2').scrollTop($('#chat2')[0].scrollHeight);
+		},
+		generateURL: function(){
+			return host + "?n=" + this.generatePN + "&p=" + $.jCryption.encrypt(btoa(this.generatePN),this.random(5));
+		},
+		copy: function(){
+			if(this.generatePN==undefined || this.generatePN.trim()==""){
+				return;
+			}
+			let el = document.createElement('textarea');
+			el.value = this.generateURL();
+			el.setAttribute('readonly', '');
+			el.style.position = 'absolute';
+			el.style.left = '-9999px';
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
+			alert("URL generada y copiada al cortapapeles");
+		},
+		random: function(length){
+			let possibleChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			let text = "";
+			for (let i = 0; i < length; i++){
+				text += possibleChar.charAt(Math.floor(Math.random() * possibleChar.length));
+			}
+			return text;
 		}
 	});	
 	

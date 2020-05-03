@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="simpleweb" data-ng-app="myApp">
+    <div id="simpleweb" data-ng-app="myApp"  data-ng-controller="chatCtrl as ctrl">
         <header class="fp">
             <img src="/media/img/simpleweb/img2.jpg" class="fp hidden-xs" alt="simpleweb" />
             <h1>CHAT ANONIMO
@@ -42,13 +42,8 @@
 				<p>Más información pinchando <a href="https://github.com/jotacalderon90/trascender.chat" target="_blank">aquí</a></p>
             </section>
         </main>
-		<div class="container fp" data-ng-controller="chatCtrl as ctrl">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-            <div class="row">
+		<div id="dvChat" class="container fp">
+            <div id="dvChat1" class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-2">
 					<input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" data-ng-model="ctrl.chat.user.nickname"/>
@@ -63,13 +58,22 @@
 				</div>
                 <div class="col-md-8">
                     <input type="text" maxlength="100" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
-                    <ul class="list-group" id="chat">
+                    <ul class="list-group ULChat" id="chat">
                     </ul>
                 </div>
 				<div class="col-md-1"></div>
             </div>
+            <div id="dvChat2">
+				<input type="text" maxlength="100" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
+                <ul class="list-group ULChat" id="chat2"></ul>
+			</div>
         </div>
-
+        <footer class="fp container">
+			<p>Para generar un espacio aún más privado complete el siguiente formulario y comparta la URL generada</p>
+			<input type="text" class="form-control" placeholder="Ingrese una palabra" data-ng-model="ctrl.chat.generatePN"/>
+			<br>
+			<button class="btn btn-block btn-success" data-ng-click="ctrl.chat.copy()">GENERAR URL</button>
+		</footer>
     </div>
 
     <!--<js>-->

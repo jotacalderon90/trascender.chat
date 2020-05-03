@@ -71,6 +71,47 @@ html,body{
 	border-radius: 0;
 	color: #FFF;
 }
+
+
+.ULChat{
+	max-height: 400px;
+	overflow: auto;
+}
+.ULChat .list-group-item{
+	background: inherit;
+	border: 0px;
+	padding-bottom: 25px;
+	border-bottom: 1px solid grey;
+}
+.ULChat .list-group-item p{
+	font-size: 14px;
+	background: inherit;
+	opacity: 1;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+}
+.ULChat .list-group-item img{
+	height: 25px;
+	float: left;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+.ULChat .list-group-item p{
+	font-size: 16px;
+}
+.ULChat .list-group-item small{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 12px;
+}
+
+#dvChat,footer{
+	padding-top: 200px;
+}
+
+
 @media (max-width: 768px) {
 	#simpleweb{
 		text-align: center;
@@ -110,39 +151,18 @@ html,body{
 		width: auto;
 		height: auto;
 	}
-}
-
-
-#chat{
-	max-height: 400px;
-	overflow: auto;
-}
-#chat .list-group-item{
-	background: inherit;
-	border: 0px;
-	padding-bottom: 25px;
-	border-bottom: 1px solid grey;
-}
-#chat .list-group-item p{
-	font-size: 14px;
-	background: inherit;
-	opacity: 1;
-	margin: 0px;
-	padding: 0px;
-	text-align: left;
-}
-#chat .list-group-item img{
-	height: 25px;
-	float: left;
-	margin-right: 5px;
-	margin-bottom: 5px;
-}
-#chat .list-group-item p{
-	font-size: 16px;
-}
-#chat .list-group-item small{
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 12px;
+	#dvChat{
+		padding-top: 0px;
+	}
+	.container{
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+	#dvChat2 input{
+		position: absolute;
+		bottom: 0;
+	}
+	#dvChat2 p{
+		opacity: 1;
+	}
 }
