@@ -5,15 +5,14 @@ app.controller("chatCtrl", function(trascender,$scope){
 	this.chat = new trascender({
 		start: function(){
 			let url = new URL(location.href);
-			let n = url.searchParams.get("n");
 			let p = url.searchParams.get("p");
 			
 			this.user = {
-				nickname: (n!=null)?n:"anonymous",
+				nickname: "anonymous",
 				password: (p!=null)?p:"secret"
 			}
 			
-			if(n!=null && p!=null){
+			if(p!=null){
 				$("header,main,footer").fadeOut();
 			}
 			
@@ -65,7 +64,7 @@ app.controller("chatCtrl", function(trascender,$scope){
 			}
 		},
 		generateURL: function(){
-			return host + "?n=" + this.user.nickname + "&p=" + $.jCryption.encrypt(btoa(this.user.password),this.random(5));
+			return host + "?p=" + $.jCryption.encrypt(btoa(this.user.password),this.random(5));
 		},
 		copy: function(){
 			let el = document.createElement('textarea');
