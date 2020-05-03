@@ -42,38 +42,52 @@
 				<p>Más información pinchando <a href="https://github.com/jotacalderon90/trascender.chat" target="_blank">aquí</a></p>
             </section>
         </main>
-		<div id="dvChat" class="container fp">
-            <div id="dvChat1" class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">
-					<input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" data-ng-model="ctrl.chat.user.nickname"/>
-					<br>
-					<input type="password" class="form-control" placeholder="Ingrese clave secreta" data-ng-model="ctrl.chat.user.password"/>
-					<br>
-					<input type="text" class="form-control" placeholder="Ingrese link de thumb" data-ng-model="ctrl.chat.user.thumb"/>
-					<br>
-					<audio type="audio/mpeg" id="blop" controls>
-						<source src="media/audio/blop.mp3"></source>
-					</audio>
+		<div id="dvChat" class="fp">
+			<ul class="list-group" id="chat"></ul>
+			<div class="input-group">
+				<input type="text" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
+				<div class="input-group-btn">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="fa fa-cog"></span>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li class="text-center">
+							<a data-toggle="modal" data-target="#mdNickname">
+								<i class="fa fa-user"></i>
+							</a>
+						</li>
+						<li class="text-center">
+							<a data-toggle="modal" data-target="#mdPassword">
+								<i class="fa fa-lock"></i>
+							</a>
+						</li>
+						<li>
+							<button class="btn btn-block btn-success" data-ng-click="ctrl.chat.copy()">GENERAR URL PRIVADA</button>
+						</li>
+						<li>
+							<audio type="audio/mpeg" id="blop" controls>
+								<source src="media/audio/blop.mp3"></source>
+							</audio>
+						</li>
+					</ul>
 				</div>
-                <div class="col-md-8">
-                    <input type="text" maxlength="100" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
-                    <ul class="list-group ULChat" id="chat">
-                    </ul>
-                </div>
-				<div class="col-md-1"></div>
-            </div>
-            <div id="dvChat2">
-				<input type="text" maxlength="100" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
-                <ul class="list-group ULChat" id="chat2"></ul>
+			</div>
+			
+			<div class="modal fade" id="mdNickname" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" data-ng-model="ctrl.chat.user.nickname"/>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="mdPassword" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<input type="password" class="form-control" placeholder="Ingrese clave secreta" data-ng-model="ctrl.chat.user.password"/>
+					</div>
+				</div>
 			</div>
         </div>
-        <footer class="fp container">
-			<p>Para generar un espacio aún más privado complete el siguiente formulario y comparta la URL generada</p>
-			<input type="text" class="form-control" placeholder="Ingrese una palabra" data-ng-model="ctrl.chat.generatePN"/>
-			<br>
-			<button class="btn btn-block btn-success" data-ng-click="ctrl.chat.copy()">GENERAR URL</button>
-		</footer>
     </div>
 
     <!--<js>-->

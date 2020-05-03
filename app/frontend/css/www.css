@@ -72,18 +72,22 @@ html,body{
 	color: #FFF;
 }
 
-
-.ULChat{
-	max-height: 400px;
-	overflow: auto;
+#simpleweb #dvChat{
 }
-.ULChat .list-group-item{
+#simpleweb #dvChat #chat{
+	width: 100%;
+	height: 94%;
+	overflow: auto;
+	margin-bottom: 0px;
+}
+#simpleweb #dvChat #chat .list-group-item{
 	background: inherit;
 	border: 0px;
 	padding-bottom: 25px;
 	border-bottom: 1px solid grey;
+	z-index:1;
 }
-.ULChat .list-group-item p{
+#simpleweb #dvChat #chat .list-group-item p{
 	font-size: 14px;
 	background: inherit;
 	opacity: 1;
@@ -91,24 +95,38 @@ html,body{
 	padding: 0px;
 	text-align: left;
 }
-.ULChat .list-group-item img{
+#simpleweb #dvChat #chat .list-group-item img{
 	height: 25px;
 	float: left;
 	margin-right: 5px;
 	margin-bottom: 5px;
 }
-.ULChat .list-group-item p{
+#simpleweb #dvChat #chat .list-group-item p{
 	font-size: 16px;
 }
-.ULChat .list-group-item small{
+#simpleweb #dvChat #chat .list-group-item small{
 	position: absolute;
 	top: 0;
 	right: 0;
 	font-size: 12px;
 }
-
-#dvChat,footer{
-	padding-top: 200px;
+#simpleweb #dvChat .input-group{
+	width: 100%;
+	height: 6%;
+	border: none;
+	margin-bottom: 0px;
+}
+#simpleweb #dvChat .input-group .dropdown-menu{
+	top: auto;
+	bottom: 100%;
+	background-color: rgba(26,26,26,.8);
+	color: #fff;
+}
+#simpleweb #dvChat .input-group .dropdown-menu .btn-block{
+	border-radius: 0px;
+}
+#simpleweb #dvChat .input-group .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
+	background-color: black;
 }
 
 
@@ -151,18 +169,8 @@ html,body{
 		width: auto;
 		height: auto;
 	}
-	#dvChat{
-		padding-top: 0px;
-	}
-	.container{
-		padding-right: 0px;
-		padding-left: 0px;
-	}
-	#dvChat2 input{
-		position: absolute;
-		bottom: 0;
-	}
-	#dvChat2 p{
-		opacity: 1;
+	#simpleweb #dvChat{
+		width: 100%;
+		height: 100%;
 	}
 }

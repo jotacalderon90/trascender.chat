@@ -10,14 +10,11 @@ app.controller("chatCtrl", function(trascender,$scope){
 			
 			this.user = {
 				nickname: (n!=null)?n:"anonymous",
-				password: (p!=null)?p:"secret",
-				thumb: "/media/img/logo.png"
+				password: (p!=null)?p:"secret"
 			}
 			
 			if(n!=null && p!=null){
-				$("header,main,footer,#dvChat1").fadeOut();
-				$("#dvChat2").fadeIn();
-				this.private = true;
+				$("header,main,footer").fadeOut();
 			}
 			
 			this.message = "";
@@ -35,59 +32,42 @@ app.controller("chatCtrl", function(trascender,$scope){
 				this.message = this.message.trim();
 				if(this.message!=""){
 					this.socket.emit("mts",{
-						nickname: this.user.nickname,
-						thumb: this.user.thumb,
-						msg: $.jCryption.encrypt(btoa(this.message),this.user.password)
+						msg: $.jCryption.encrypt(btoa(this.user.nickname + ": " + this.message),this.user.password)
 					});
 					this.message = "";
 				}
 			}
 		},
 		receive: function(data){
-			//console.log(data);
-			data.msgb= data.msg;
+			console.log(data);
 			data.msg = $.jCryption.decrypt(data.msg, this.user.password);
 			data.msg = atob(data.msg);
-			if(this.private && data.msg==""){
+			if(data.msg!=""){
+				this.n = "";
+				this.n += '<li class="list-group-item">';
+				this.n += '<p>{{row.msg}}. <small>{{row.time}}</small></p>';
+				this.n += '</li>';
 				
-			}else{
-				this.pushMSG(data);
+				let c = document.getElementById("chat");
+				
+				let li = document.createElement("li");
+				li.setAttribute("class","list-group-item");
+				let p = document.createElement("p");
+				p.innerHTML = data.msg;
+				let s = document.createElement("small");
+				s.innerHTML =  moment(new Date(data.time)).format("H:mm");
+				li.appendChild(p);
+				li.appendChild(s);
+				c.appendChild(li);
 				document.getElementById("blop").play();
+				
+				$('#chat').scrollTop($('#chat')[0].scrollHeight);
 			}
-		},
-		pushMSG: function(data){
-			this.n = "";
-			this.n += '<li class="list-group-item">';
-			this.n += '<img src="{{row.thumb}}" title="{{row.nickname}}"/>';
-			this.n += '<p>{{row.msg}}. <small>{{row.time}}</small></p>';
-			this.n += '</li>';
-			
-			let c = document.getElementById("chat");
-			let c2 = document.getElementById("chat2");
-			
-			let li = document.createElement("li");
-			li.setAttribute("class","list-group-item");
-			let img = document.createElement("img");
-			img.src = data.thumb;
-			img.title = data.nickname;
-			let p = document.createElement("p");
-			p.innerHTML = ((data.msg!="")?data.msg:data.msgb);
-			//let s = document.createElement("small");
-			//s.innerHTML =  moment(new Date(data.time)).format("ddd, hA");
-			li.appendChild(img);
-			li.appendChild(p);
-			//li.appendChild(s);
-			c.insertBefore(li, c.firstChild);
-			c2.appendChild(li);
-			$('#chat2').scrollTop($('#chat2')[0].scrollHeight);
 		},
 		generateURL: function(){
-			return host + "?n=" + this.generatePN + "&p=" + $.jCryption.encrypt(btoa(this.generatePN),this.random(5));
+			return host + "?n=" + this.user.nickname + "&p=" + $.jCryption.encrypt(btoa(this.user.password),this.random(5));
 		},
 		copy: function(){
-			if(this.generatePN==undefined || this.generatePN.trim()==""){
-				return;
-			}
 			let el = document.createElement('textarea');
 			el.value = this.generateURL();
 			el.setAttribute('readonly', '');
