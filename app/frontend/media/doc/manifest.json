@@ -1,7 +1,7 @@
 {
 	"name": "PWA - Trascender Chat",
 	"short_name": "CHAT",
-	"start_url": "index.html",
+	"start_url": "/",
 	"display": "standalone",
 	"background-color": "#ccc",
 	"theme-color": "#5FAAES",
