@@ -1,0 +1,17 @@
+{
+	"name": "PWA - Trascender Chat",
+	"short_name": "CHAT",
+	"start_url": "index.html",
+	"display": "standalone",
+	"background-color": "#ccc",
+	"theme-color": "#5FAAES",
+	"icons": [{
+		"src": "/media/img/icons/144x144.png",
+		"sizes": "144x144",
+		"type": "image/png"
+	}, {
+		"src": "/media/img/logo.png",
+		"sizes": "100x100",
+		"type": "image/png"
+	}]
+}

@@ -88,4 +88,17 @@ app.controller("chatCtrl", function(trascender,$scope){
 		}
 	});	
 	
+	this.camera = new trascender({
+		take: async function(){
+			const { Camera } = Capacitor.Plugins;
+			try {
+				const photo = await Camera.getPhoto({resultType: "uri"});
+				console.log(photo.webPath);
+				$("#image").attr("src",photo.webPath);
+			} catch (e) {
+				alert(e);
+				console.warn('User cancelled', e);
+			}
+		}
+	})
 });

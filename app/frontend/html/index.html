@@ -4,7 +4,9 @@
 <head>
     <!--Metas-->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
     <meta name="keywords" content="trascender" />
     <meta name="description" content="trascender" />
     <meta name="Author" content="@trascender.org" />
@@ -20,7 +22,11 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="all" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" media="all" />
     <link rel="stylesheet" href="css/www.css" media="all" />
-	<link rel="manifest" href="/manifest.json">
+	
+	<script type="module" src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+	<script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"></script>
+	
+	<link rel="manifest" href="media/doc/manifest.json">
 </head>
 
 <body>
@@ -53,6 +59,11 @@
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li class="text-center">
+							<a data-toggle="modal" data-target="#mdPicture">
+								<i class="fa fa-photo"></i>
+							</a>
+						</li>
+						<li class="text-center">
 							<a data-toggle="modal" data-target="#mdNickname">
 								<i class="fa fa-user"></i>
 							</a>
@@ -73,7 +84,6 @@
 					</ul>
 				</div>
 			</div>
-			
 			<div class="modal fade" id="mdNickname" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
@@ -85,6 +95,14 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<input type="password" class="form-control" placeholder="Ingrese clave secreta" data-ng-model="ctrl.chat.user.password"/>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="mdPicture" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<button id="snap" data-ng-click="ctrl.camera.take()">Capture</button>
+						<img id="image"/>
 					</div>
 				</div>
 			</div>
@@ -108,6 +126,8 @@
     </script>
     <script src="js/lib/trascender.js">
     </script>
+	<script src="js/lib/capacitor.js">
+	</script>
     <script>
         var app = angular.module('myApp', []);
         app.factory("trascender", function() {
@@ -118,7 +138,7 @@
     </script>
 	<script src="js/chat.js">
 	</script>
-	<script src="loader.js">
+	<script src="js/lib/loader.js">
 	</script>
     <!--</js>-->
 </body>

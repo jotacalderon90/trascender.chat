@@ -21,11 +21,20 @@ self.prototype.render_index = function(req,res,next){
 	res.render("index");
 }
 
+
+
+//@route('/index.html')
+//@method(['get'])
+self.prototype.render_index = function(req,res,next){
+	res.render("index");
+}
+
 self.prototype.connection = function(socket){
 	let ip = socket.request.connection.remoteAddress;
 	this.sockets[ip] = socket;
 	this.sockets[ip].on("mts", (data)=>{this.mts(data)});
 	this.sockets[ip].on("disconnect", ()=>{this.disconnect(ip)});
+	console.log(ip + " connected");
 }
 
 self.prototype.mts = function(data){
