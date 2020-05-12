@@ -31,7 +31,9 @@ app.controller("chatCtrl", function(trascender,$scope){
 				this.message = this.message.trim();
 				if(this.message!=""){
 					this.socket.emit("mts",{
-						msg: $.jCryption.encrypt(btoa(this.user.nickname + ": " + this.message),this.user.password)
+						nickname: this.user.nickname,
+						thumb: this.user.thumb,
+						msg: $.jCryption.encrypt(btoa(this.message),this.user.password)
 					});
 					this.message = "";
 				}
@@ -52,7 +54,12 @@ app.controller("chatCtrl", function(trascender,$scope){
 				let li = document.createElement("li");
 				li.setAttribute("class","list-group-item");
 				let p = document.createElement("p");
-				p.innerHTML = data.msg;
+				
+				if(data.thumb){
+					p.innerHTML = '<img src="' + data.thumb + '" height="40" width="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
+				}
+				
+				p.innerHTML = p.innerHTML + data.msg;
 				let s = document.createElement("small");
 				s.innerHTML =  moment(new Date(data.time)).format("H:mm");
 				li.appendChild(p);
@@ -85,6 +92,9 @@ app.controller("chatCtrl", function(trascender,$scope){
 				text += possibleChar.charAt(Math.floor(Math.random() * possibleChar.length));
 			}
 			return text;
+		},
+		setThumb: function(photo){
+			this.user.thumb = photo.webPath;
 		}
 	});	
 	
@@ -93,8 +103,7 @@ app.controller("chatCtrl", function(trascender,$scope){
 			const { Camera } = Capacitor.Plugins;
 			try {
 				const photo = await Camera.getPhoto({resultType: "uri"});
-				console.log(photo.webPath);
-				$("#image").attr("src",photo.webPath);
+				self.chat.setThumb(photo);
 			} catch (e) {
 				alert(e);
 				console.warn('User cancelled', e);

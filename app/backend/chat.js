@@ -48,6 +48,4 @@ self.prototype.disconnect = function(ip){
 	console.log(ip + " disconnect");
 }
 
-
-
 module.exports = self;

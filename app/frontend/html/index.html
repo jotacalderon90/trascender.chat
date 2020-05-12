@@ -59,7 +59,7 @@
 					</button>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li class="text-center">
-							<a data-toggle="modal" data-target="#mdPicture">
+							<a data-toggle="modal" data-ng-click="ctrl.camera.take()">
 								<i class="fa fa-photo"></i>
 							</a>
 						</li>
@@ -95,14 +95,6 @@
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<input type="password" class="form-control" placeholder="Ingrese clave secreta" data-ng-model="ctrl.chat.user.password"/>
-					</div>
-				</div>
-			</div>
-			<div class="modal fade" id="mdPicture" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<button id="snap" data-ng-click="ctrl.camera.take()">Capture</button>
-						<img id="image"/>
 					</div>
 				</div>
 			</div>
