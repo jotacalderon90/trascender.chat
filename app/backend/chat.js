@@ -23,7 +23,7 @@ self.prototype.render_index = function(req,res,next){
 
 
 
-//@route('/index.html')
+//@route('index.html')
 //@method(['get'])
 self.prototype.render_index = function(req,res,next){
 	res.render("index");
