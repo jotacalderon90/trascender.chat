@@ -56,7 +56,7 @@ app.controller("chatCtrl", function(trascender,$scope){
 				let p = document.createElement("p");
 				
 				if(data.thumb){
-					p.innerHTML = '<img src="' + data.thumb + '" height="40" width="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
+					p.innerHTML = '<img src="' + data.thumb + '" height="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
 				}
 				
 				p.innerHTML = p.innerHTML + data.msg;
