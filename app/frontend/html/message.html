@@ -28,18 +28,22 @@
 </head>
 
 <body>
-    <form>
-		<div class="page-header">
-			<h1 class="text-{{data:doc.class}}">{{data:doc.title}} <br><small>{{data:doc.message}}</small></h1>
+	<div class="container">
+		<div class="col-md-6 col-md-offset-3 full-content">
+			<form>
+				<div class="page-header">
+					<h1 class="text-{{data:doc.class}}">{{data:doc.title}} <br><small>{{data:doc.message}}</small></h1>
+				</div>
+				<div class="text-right">
+					<!--if:doc.error==401-->
+					<a href="/user/login" >Ingresar</a>
+					<!--/if-->
+					<!--if:doc.error!=401-->
+					<a href="/" >Inicio</a>
+					<!--/if-->
+				</div>
+			</form>
 		</div>
-		<div class="text-right">
-			<!--if:doc.error==401-->
-			<a href="/user/login" >Ingresar</a>
-			<!--/if-->
-			<!--if:doc.error!=401-->
-			<a href="/" >Inicio</a>
-			<!--/if-->
-		</div>
-	</form>
+	</div>
 </body>
 </html>

@@ -56,7 +56,7 @@ app.controller("chatCtrl", function(trascender,$scope){
 				let p = document.createElement("p");
 				
 				if(data.thumb){
-					p.innerHTML = '<img src="' + data.thumb + '" height="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
+					p.innerHTML = '<img src="data:image/png;base64, ' + data.thumb + '" height="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
 				}
 				
 				p.innerHTML = p.innerHTML + data.msg;
@@ -94,20 +94,36 @@ app.controller("chatCtrl", function(trascender,$scope){
 			return text;
 		},
 		setThumb: function(photo){
-			this.user.thumb = photo.webPath;
+			this.user.thumb = photo;
 		}
 	});	
 	
 	this.camera = new trascender({
 		take: async function(){
-			const { Camera } = Capacitor.Plugins;
 			try {
-				const photo = await Camera.getPhoto({resultType: "uri"});
-				self.chat.setThumb(photo);
+				let photo = await Capacitor.Plugins.Camera.getPhoto({resultType: "Base64"});
+				console.log(photo);
+				self.chat.setThumb(photo.base64String);
 			} catch (e) {
 				alert(e);
-				console.warn('User cancelled', e);
+				console.log(e);
 			}
 		}
-	})
+	});
+	
+	this.geolocation = new trascender({
+		take: async function(){
+			let {Geolocation} = Capacitor.Plugins;
+			try{
+				let coordinates = await Geolocation.getCurrentPosition();
+				console.log(coordinates);
+			}catch(e){
+				alert(e);
+				console.log(e);
+			}
+		}
+	});
+	
+	//console.log(Capacitor);
+	
 });
