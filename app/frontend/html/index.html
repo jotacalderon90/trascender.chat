@@ -1,142 +1,192 @@
 <!doctype html>
 <html>
-
-<head>
-    <!--Metas-->
-    <meta charset="utf-8" />
-	<meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="msapplication-tap-highlight" content="no">
-    <meta name="keywords" content="trascender" />
-    <meta name="description" content="trascender" />
-    <meta name="Author" content="@trascender.org" />
-    <!--Title-->
-    <title>CHAT
-    </title>
-    <!--Base-->
-    <base href="/" />
-    <!--Favicon-->
-    <link rel="shortcut icon" href="media/img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="media/img/favicon.ico" type="image/x-icon">
-    <!--Styles-->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="all" />
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" media="all" />
-    <link rel="stylesheet" href="css/www.css" media="all" />
+	<head>
+		<!--Metas-->
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="trascender" />
+		<meta name="description" content="trascender" />
+		<meta name="Author" content="@trascender.org" />
+		<!--Title-->
+		<title>Chat Anonimo
+		</title>
+		<!--Base-->
+		<base href="/" />
+		<!--Favicon-->
+		<link rel="shortcut icon" href="media/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="media/img/favicon.ico" type="image/x-icon">
+		<!--Styles-->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="all"/>
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" media="all"/>
 	
-	<script type="module" src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
-	<script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"></script>
-	
-	<link rel="manifest" href="media/doc/manifest.json">
-</head>
-
-<body>
-    <div id="simpleweb" data-ng-app="myApp"  data-ng-controller="chatCtrl as ctrl">
-        <header class="fp">
-            <img src="/media/img/simpleweb/img2.jpg" class="fp hidden-xs" alt="simpleweb" />
-            <h1>CHAT ANONIMO
-		    </h1>
-            <div class="opacity">
-            </div>
-        </header>
-        <main class="fp">
-            <img src="/media/img/simpleweb/img1.jpg" class="fp" alt="simpleweb" />
-            <section>
-                <h2>TRASCENDER.CHAT</h2>
-				<img src="/media/img/logo.png" id="logo"/>
-                <br />
-                <p>Bienvenido a este espacio digital, un sistema experimental que ofrece una plataforma básica de comunicación con la particularidad de que los mensajes enviados serán cifrados desde el momento en que se presiona el boton "enviar". Para que puedas comunicarte con alguien, deberás acordar una palabra secreta antes de utilizar el sistema.
-                </p>
-				<p>Más información pinchando <a href="https://github.com/jotacalderon90/trascender.chat" target="_blank">aquí</a></p>
-            </section>
-        </main>
-		<div id="dvChat" class="fp">
-			<ul class="list-group" id="chat"></ul>
-			<div class="input-group">
-				<input type="text" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Nuevo mensaje para el chat" data-ng-keypress="ctrl.chat.keypress($event)" />
-				<div class="input-group-btn">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="fa fa-cog"></span>
-					</button>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<!--<li class="text-center">
-							<a data-toggle="modal" data-ng-click="ctrl.geolocation.take()">
-								<i class="fa fa-map"></i>
-							</a>
-						</li>-->
-						<li class="text-center">
-							<a data-toggle="modal" data-ng-click="ctrl.camera.take()">
-								<i class="fa fa-photo"></i>
-							</a>
-						</li>
-						<li class="text-center">
-							<a data-toggle="modal" data-target="#mdNickname">
-								<i class="fa fa-user"></i>
-							</a>
-						</li>
-						<li class="text-center">
-							<a data-toggle="modal" data-target="#mdPassword">
-								<i class="fa fa-lock"></i>
-							</a>
-						</li>
-						<li>
-							<button class="btn btn-block btn-success" data-ng-click="ctrl.chat.copy()">GENERAR URL PRIVADA</button>
-						</li>
-						<li>
-							<audio type="audio/mpeg" id="blop" controls>
-								<source src="media/audio/blop.mp3"></source>
-							</audio>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="modal fade" id="mdNickname" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<input type="text" class="form-control" placeholder="Ingrese un nombre de usuario" data-ng-model="ctrl.chat.user.nickname"/>
+		<script type="module" src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+		<script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"></script>
+		
+		<link rel="manifest" href="media/doc/manifest.json">
+		
+		<style>
+			html,body{
+				margin: 0;
+				padding: 0;
+				height: 100%;
+			}
+			.main-block{
+				height: 100%;
+			}
+			header{
+				width: 100%;
+				position: fixed;
+				top: 0;
+				z-index: 2;
+			}
+			nav{
+			}
+			#chat{
+				position: relative;
+				top: 50px;
+				width: 100%;
+				height: auto;
+				overflow: auto;
+				z-index: 1;
+				padding-bottom: 35px;
+			}
+			small{
+				float: right;
+			}
+			p{
+				margin: 0;
+				max-width: 80%;
+			}
+			img{
+				max-width: 50%;
+			}
+			footer{
+				width: 100%;
+				height: 34px;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-block" data-ng-app="myApp"  data-ng-controller="chatCtrl as ctrl">
+			<header>
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#">Chat anonimo</a>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<!--<ul class="nav navbar-nav">
+								<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+								<li><a href="#">Link</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 	aria-expanded="false">Dropdown <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">One more separated link</a></li>
+									</ul>
+								</li>
+								<li class="text-center">
+									<a data-toggle="modal" data-ng-click="ctrl.camera.take()">
+										<i class="fa fa-photo"></i>
+									</a>
+								</li>
+							</ul>-->
+							<form class="navbar-form navbar-left">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="nombre de usuario" data-ng-model="ctrl.chat.user.nickname">
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="palabra secreta" data-ng-model="ctrl.chat.user.password">
+								</div>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<a href="/info" target="_blank">
+										<i class="fa fa-info-circle pull-right"></i>
+									</a>
+								</li>
+								<!--<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Action</a></li>
+										<li><a href="#">Another action</a></li>
+										<li><a href="#">Something else here</a></li>
+										<li role="separator" class="divider"></li>
+										<li><a href="#">Separated link</a></li>
+									</ul>
+								</li>-->
+							</ul>
+						</div>
 					</div>
+				</nav>
+			</header>
+			
+			<main>
+				<ul class="list-group" id="chat"></ul>
+			</main>
+			
+			<footer>
+				<div class="input-group">
+					<input type="text" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Escribe un mensaje" data-ng-keypress="ctrl.chat.keypress($event)" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" data-ng-click="ctrl.camera.take()">
+							<i class="fa fa-camera"></i>
+						</button>
+						<!--<button class="btn btn-default" type="button">
+							<i class="fa fa-link"></i>
+						</button>-->
+					</span>
 				</div>
-			</div>
-			<div class="modal fade" id="mdPassword" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<input type="password" class="form-control" placeholder="Ingrese clave secreta" data-ng-model="ctrl.chat.user.password"/>
-					</div>
-				</div>
-			</div>
-        </div>
-    </div>
+			</footer>
+		</div>
+		
 
-    <!--<js>-->
-    <script src="bower_components/jquery/dist/jquery.min.js">
-    </script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
-    </script>
-    <script src="bower_components/angular/angular.min.js">
-    </script>
-	<script src="js/lib/socket.io-2.0.3.js">
-	</script>
-	<script src="js/lib/jcryption.js">
-	</script>
-    <script src="js/lib/moment.js">
-    </script>
-    <script src="js/lib/moment-with-locales.js">
-    </script>
-    <script src="js/lib/trascender.js">
-    </script>
-	<script src="js/lib/capacitor.js">
-	</script>
-    <script>
-        var app = angular.module('myApp', []);
-        app.factory("trascender", function() {
-            return trascender;
-        });
-        moment.locale("es");
-		var host = "{{data:doc.config.properties.host}}";
-    </script>
-	<script src="js/chat.js">
-	</script>
-	<script src="js/lib/loader.js">
-	</script>
-    <!--</js>-->
-</body>
+		<!--<js>-->
+		<script src="bower_components/jquery/dist/jquery.min.js">
+		</script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
+		</script>
+		<script src="bower_components/angular/angular.min.js">
+		</script>
+		<script src="js/lib/socket.io-2.0.3.js">
+		</script>
+		<script src="js/lib/jcryption.js">
+		</script>
+		<script src="js/lib/moment.js">
+		</script>
+		<script src="js/lib/moment-with-locales.js">
+		</script>
+		<script src="js/lib/trascender.js">
+		</script>
+		<script src="js/lib/capacitor.js">
+		</script>
+		<script>
+			var app = angular.module('myApp', []);
+			app.factory("trascender", function() {
+				return trascender;
+			});
+			moment.locale("es");
+			var host = "{{data:doc.config.properties.host}}";
+		</script>
+		<script src="js/chat.js">
+		</script>
+		<script src="js/lib/loader.js">
+		</script>
+		<!--</js>-->
+	</body>
 </html>

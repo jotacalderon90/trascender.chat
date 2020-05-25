@@ -4,18 +4,10 @@ app.controller("chatCtrl", function(trascender,$scope){
 	
 	this.chat = new trascender({
 		start: function(){
-			let url = new URL(location.href);
-			let p = url.searchParams.get("p");
-			
 			this.user = {
 				nickname: "anonymous",
-				password: (p!=null)?p:"secret"
+				password: "secret"
 			}
-			
-			if(p!=null){
-				$("header,main,footer").fadeOut();
-			}
-			
 			this.message = "";
 			if(host.indexOf("localhost")>-1){
 				this.socket = io({transports: ['websocket']});
@@ -31,19 +23,23 @@ app.controller("chatCtrl", function(trascender,$scope){
 				this.message = this.message.trim();
 				if(this.message!=""){
 					this.socket.emit("mts",{
-						nickname: this.user.nickname,
-						thumb: this.user.thumb,
-						msg: $.jCryption.encrypt(btoa(this.message),this.user.password)
+						msg: $.jCryption.encrypt(btoa(JSON.stringify({
+							nickname: this.user.nickname,
+							message: this.message
+						})),this.user.password)
 					});
 					this.message = "";
 				}
 			}
 		},
 		receive: function(data){
-			console.log(data);
+			//console.log(data);
 			data.msg = $.jCryption.decrypt(data.msg, this.user.password);
 			data.msg = atob(data.msg);
 			if(data.msg!=""){
+				//console.log(data);
+				data.msg = JSON.parse(data.msg);
+				
 				this.n = "";
 				this.n += '<li class="list-group-item">';
 				this.n += '<p>{{row.msg}}. <small>{{row.time}}</small></p>';
@@ -53,57 +49,57 @@ app.controller("chatCtrl", function(trascender,$scope){
 				
 				let li = document.createElement("li");
 				li.setAttribute("class","list-group-item");
-				let p = document.createElement("p");
 				
-				if(data.thumb){
-					p.innerHTML = '<img src="data:image/png;base64, ' + data.thumb + '" height="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
-				}
-				
-				p.innerHTML = p.innerHTML + data.msg;
+				//CREATED
 				let s = document.createElement("small");
 				s.innerHTML =  moment(new Date(data.time)).format("H:mm");
-				li.appendChild(p);
-				li.appendChild(s);
-				c.appendChild(li);
-				document.getElementById("blop").play();
 				
-				$('#chat').scrollTop($('#chat')[0].scrollHeight);
+				//NICKNAME
+				let b = document.createElement("b");
+				b.innerHTML = data.msg.nickname;
+				
+				//MESSAGE
+				let p = document.createElement("p");
+				if(data.msg.message){
+					p.innerHTML = data.msg.message;
+				}
+				
+				//IMAGE 
+				let i = document.createElement("img");
+				if(data.msg.image){
+					i.src = "data:image/png;base64," + data.msg.image.base64String;
+				}
+				
+				/*if(data.thumb){
+					p.innerHTML = '<img src="data:image/png;base64, ' + data.thumb + '" height="40" title="' + data.nickname + '" alt="' + data.nickname + '"/>';
+				}*/
+				
+				li.appendChild(s);
+				li.appendChild(b);
+				li.appendChild(p);
+				li.appendChild(i);
+				c.appendChild(li);
+				
+				//document.getElementById("blop").play();
+				window.scrollTo(0,document.body.scrollHeight);
 			}
 		},
-		generateURL: function(){
-			return host + "?p=" + $.jCryption.encrypt(btoa(this.user.password),this.random(5));
-		},
-		copy: function(){
-			let el = document.createElement('textarea');
-			el.value = this.generateURL();
-			el.setAttribute('readonly', '');
-			el.style.position = 'absolute';
-			el.style.left = '-9999px';
-			document.body.appendChild(el);
-			el.select();
-			document.execCommand('copy');
-			document.body.removeChild(el);
-			alert("URL generada y copiada al cortapapeles");
-		},
-		random: function(length){
-			let possibleChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-			let text = "";
-			for (let i = 0; i < length; i++){
-				text += possibleChar.charAt(Math.floor(Math.random() * possibleChar.length));
-			}
-			return text;
-		},
-		setThumb: function(photo){
-			this.user.thumb = photo;
+		setImage: function(image){
+			this.socket.emit("mts",{
+				msg: $.jCryption.encrypt(btoa(JSON.stringify({
+					nickname: this.user.nickname,
+					image: image
+				})),this.user.password)
+			});
+			//base64String,format
 		}
 	});	
 	
 	this.camera = new trascender({
 		take: async function(){
 			try {
-				let photo = await Capacitor.Plugins.Camera.getPhoto({resultType: "Base64"});
-				console.log(photo);
-				self.chat.setThumb(photo.base64String);
+				let image = await Capacitor.Plugins.Camera.getPhoto({resultType: "Base64"});
+				self.chat.setImage(image);
 			} catch (e) {
 				alert(e);
 				console.log(e);
@@ -123,7 +119,4 @@ app.controller("chatCtrl", function(trascender,$scope){
 			}
 		}
 	});
-	
-	//console.log(Capacitor);
-	
 });

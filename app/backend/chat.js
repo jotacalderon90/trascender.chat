@@ -43,8 +43,6 @@ self.prototype.connection = function(socket){
 self.prototype.mts = function(data){
 	let d = {};
 	try{
-		d.nickname = data.nickname;
-		d.thumb = data.thumb;
 		d.msg = data.msg;
 		d.time = new Date();
 	}catch(e){
