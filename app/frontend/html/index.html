@@ -39,8 +39,6 @@
 				top: 0;
 				z-index: 2;
 			}
-			nav{
-			}
 			#chat{
 				position: relative;
 				top: 50px;
@@ -50,14 +48,14 @@
 				z-index: 1;
 				padding-bottom: 35px;
 			}
-			small{
+			#chat small{
 				float: right;
 			}
-			p{
+			#chat p{
 				margin: 0;
 				max-width: 80%;
 			}
-			img{
+			#chat img{
 				max-width: 50%;
 			}
 			footer{
@@ -82,7 +80,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand" href="#">Chat anonimo</a>
+							<a class="navbar-brand" href="/">trascender - chat</a>
 						</div>
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<!--<ul class="nav navbar-nav">
@@ -108,10 +106,35 @@
 							</ul>-->
 							<form class="navbar-form navbar-left">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="nombre de usuario" data-ng-model="ctrl.chat.user.nickname">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="nombre de usuario" data-ng-model="ctrl.chat.user.nickname" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapse_nickname" aria-expanded="false" aria-controls="collapse_nickname">
+												<i class="fa fa-eye"></i>
+											</button>
+										</span>
+									</div>
+									<div class="collapse" id="collapse_nickname">
+										<div class="well">
+											<small>Nombre de usuario por el cual se identificará al resto de los usuarios.</small>
+										</div>
+									</div>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="palabra secreta" data-ng-model="ctrl.chat.user.password">
+									<div class="input-group">
+										<input type="password" class="form-control" placeholder="palabra secreta" data-ng-model="ctrl.chat.user.password" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapse_password" aria-expanded="false" aria-controls="collapse_password">
+												<i class="fa fa-eye"></i>
+											</button>
+										</span>
+									</div>
+									<div class="collapse" id="collapse_password">
+										<div class="well">
+											<small>Clave secreta utilizada para encriptar y desencriptar los mensajes. Todos los usuarios con los que desee entablar una comunicación deberán acordar la misma palabra secreta.</small>
+										</div>
+									</div>
+									
 								</div>
 							</form>
 							<ul class="nav navbar-nav navbar-right">
