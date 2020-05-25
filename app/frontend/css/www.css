@@ -1,176 +1,41 @@
 html,body{
-	height: 100%;
 	margin: 0;
-}
-#simpleweb {
+	padding: 0;
 	height: 100%;
-	text-align: center;
-	font-family: Arial;
-	color: #D3D3D3;
-	background: #000;
 }
-#simpleweb img, #simpleweb audio{
-	max-width: 100%;
-	max-height: 100%;
+.main-block{
+	height: 100%;
 }
-#simpleweb a{
-	color: #D3D3D3;
-}
-#simpleweb a:hover{
-	color: #FFF;
-	text-decoration: none;
-}
-#simpleweb h1{
-	position: absolute;
-	right: 0;
-	left: 0;
-	top: 50%;
+header{
+	width: 100%;
+	position: fixed;
+	top: 0;
 	z-index: 2;
-	margin: 0;
 }
-#simpleweb p{
-	font-size: 26px;
-	background: black;
-	opacity: 0.9;
-	margin:0px;
-	padding: 25px;
-}
-#simpleweb section{
-	background: inherit;
-}
-#simpleweb main{
+#chat{
 	position: relative;
-}
-#simpleweb main section{
-	position: absolute;
-	margin: 100px;
-	top: 0;
-	left: 0;
-	right: 0;
-}
-#simpleweb .fp{
+	top: 50px;
 	width: 100%;
-	height: 100%;
-	background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-	background: inherit;
-}
-
-#simpleweb .opacity{
-	position: absolute;
-	top: 40%;
-	width: 100%;
-	height: 175px;
-	background: #000;
-	opacity: 0.9;
-}
-#simpleweb .form-control{
-	background: #353535;
-	border: 0px;
-	border-radius: 0;
-	color: #FFF;
-}
-
-#simpleweb #dvChat{
-}
-#simpleweb #dvChat #chat{
-	width: 100%;
-	height: 94%;
+	height: auto;
 	overflow: auto;
-	margin-bottom: 0px;
+	z-index: 1;
+	padding-bottom: 35px;
 }
-#simpleweb #dvChat #chat .list-group-item{
-	background: inherit;
-	border: 0px;
-	padding-bottom: 25px;
-	border-bottom: 1px solid grey;
-	z-index:1;
+#chat small{
+	float: right;
 }
-#simpleweb #dvChat #chat .list-group-item p{
-	font-size: 14px;
-	background: inherit;
-	opacity: 1;
-	margin: 0px;
-	padding: 0px;
-	text-align: left;
+#chat p{
+	margin: 0;
+	max-width: 80%;
 }
-#simpleweb #dvChat #chat .list-group-item img{
-	height: 25px;
-	float: left;
-	margin-right: 5px;
-	margin-bottom: 5px;
+#chat img{
+	max-width: 50%;
 }
-#simpleweb #dvChat #chat .list-group-item p{
-	font-size: 16px;
-}
-#simpleweb #dvChat #chat .list-group-item small{
-	position: absolute;
-	top: 0;
-	right: 0;
-	font-size: 12px;
-}
-#simpleweb #dvChat .input-group{
+footer{
 	width: 100%;
-	height: 6%;
-	border: none;
-	margin-bottom: 0px;
-}
-#simpleweb #dvChat .input-group .dropdown-menu{
-	top: auto;
-	bottom: 100%;
-	background-color: rgba(26,26,26,.8);
-	color: #fff;
-}
-#simpleweb #dvChat .input-group .dropdown-menu .btn-block{
-	border-radius: 0px;
-}
-#simpleweb #dvChat .input-group .dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
-	background-color: black;
-}
-
-
-@media (max-width: 768px) {
-	#simpleweb{
-		text-align: center;
-	}
-	#simpleweb h1{
-		position: relative;
-		top: 0px;
-		margin-left: 10px;
-		font-size: 18px;
-	}
-	#simpleweb h2{
-		font-size: 16px;
-	}
-	#simpleweb p{
-		font-size: 14px;
-		padding: 0px;
-	}
-	#simpleweb header h1{
-		padding-top: 25px;
-		padding-bottom: 25px;
-	}
-	#simpleweb main{
-		padding: 10px;
-		height: auto;
-	}
-	#simpleweb main section{
-		position: relative;
-		margin: 0;
-	}
-	#simpleweb main section p{
-		text-align: justify;
-	}
-	#simpleweb .opacity{
-		display:none;
-	}
-	#simpleweb .fp{
-		width: auto;
-		height: auto;
-	}
-	#simpleweb #dvChat{
-		width: 100%;
-		height: 100%;
-	}
+	height: 34px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
 }
