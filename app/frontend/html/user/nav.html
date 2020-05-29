@@ -1,0 +1,12 @@
+<li data-ng-show="!ctrl.user.isLogged">
+	<a href="/user">Crear cuenta</a>
+</li>
+<li data-ng-show="!ctrl.user.isLogged">
+	<a href="/user/login">Ingresar a tu cuenta</a>
+</li>
+<li data-ng-show="ctrl.user.isLogged">
+	<a href="/user/info">Mi perfil</a>
+</li>
+<li data-ng-show="ctrl.user.isLogged">
+	<a href="/user/logout">Cerrar sesión</a>
+</li>

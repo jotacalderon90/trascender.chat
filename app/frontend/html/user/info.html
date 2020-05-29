@@ -1,0 +1,32 @@
+<!--use:_views/m.main-->
+
+<!--define:title-->
+Mi perfil
+<!--/define:title-->
+
+<!--define:main-->
+	<form class="container col-md-6 col-md-offset-3" role="form" action="/user/update" method="POST">
+		<div class="page-header">
+			<h1>Mi perfil <small>{{data:doc.user.email}}</small></h1>
+		</div>
+		<!--if:!doc.user.google-->
+		<div class="form-group">
+			<div class="input-group">
+				<input class="form-control" placeholder="Password" name="password" type="password" value="{{data:doc.user.password}}" />
+			</div>
+		</div>
+		<!--/if-->
+		<div class="form-group">
+			<div class="input-group">
+				<input class="form-control" placeholder="Nickname" name="nickname" type="text" value="{{data:doc.user.nickname}}" />
+			</div>
+		</div>
+		
+		<button type="submit" class="btn btn-lg btn-success btn-block" >Guardar</button>
+		
+	</form>
+<!--/define:main-->
+
+<!--define:js-->
+	<script src="js/user.js"></script>
+<!--/define:js-->

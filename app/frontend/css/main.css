@@ -1,0 +1,20 @@
+html,body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+header{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 3;
+}
+.main-block{
+	height: 100%;
+}
+.container{
+	margin-top: 75px;
+}
+.input-group{
+	width: 100%;
+}

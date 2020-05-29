@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+	<head>
+	
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="keywords" content="trascender" />
+		<meta name="description" content="trascender" />
+		<meta name="Author" content="@trascender.org" />
+		<!--define:meta-->
+		
+		<title><!--define:title--></title>
+		
+		<base href="/" />
+		
+		<link rel="shortcut icon" href="media/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="media/img/favicon.ico" type="image/x-icon">
+		
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/main.css" media="all"/>
+		<!--define:css-->
+		
+		<!--define:header-->
+		
+		<link rel="manifest" href="/manifest.json">
+		
+	</head>
+	<body>
+		<div class="main-block" data-ng-app="myApp"  data-ng-controller="ctrl as ctrl">
+			<header>
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="/">trascender - chat</a>
+						</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<form class="navbar-form navbar-left" data-ng-show="ctrl.chat">
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="nombre de usuario" data-ng-model="ctrl.chat.user.nickname" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapse_nickname" aria-expanded="false" aria-controls="collapse_nickname">
+												<i class="fa fa-eye"></i>
+											</button>
+										</span>
+									</div>
+									<div class="collapse" id="collapse_nickname">
+										<div class="well">
+											<small>Nombre de usuario por el cual se identificará al resto de los usuarios.</small>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="password" class="form-control" placeholder="palabra secreta" data-ng-model="ctrl.chat.user.password" />
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#collapse_password" aria-expanded="false" aria-controls="collapse_password">
+												<i class="fa fa-eye"></i>
+											</button>
+										</span>
+									</div>
+									<div class="collapse" id="collapse_password">
+										<div class="well">
+											<small>Clave secreta utilizada para encriptar y desencriptar los mensajes. Todos los usuarios con los que desee entablar una comunicación deberán acordar la misma palabra secreta.</small>
+										</div>
+									</div>
+									
+								</div>
+							</form>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 	aria-expanded="false">
+										Más <span class="caret"></span>
+									</a>
+									<ul class="dropdown-menu">
+										<!--include:user/nav-->
+										<li role="separator" class="divider"></li>
+										<li>
+											<a href="https://github.com/jotacalderon90/trascender.chat" target="_blank">
+												acerca de
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</header>
+			<!--define:main-->
+		</div>
+		
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="js/lib/socket.io-2.0.3.js"></script>
+		<script src="js/lib/jcryption.js"></script>
+		<script src="js/lib/moment.js"></script>
+		<script src="js/lib/moment-with-locales.js"></script>
+		<script src="js/lib/capacitor.js"></script>
+		<script src="js/lib/trascender.js"></script>
+		<script>
+			moment.locale("es");
+			const app = angular.module('myApp', []);
+			const host = "{{data:doc.config.properties.host}}";
+			app.modules = {};
+		</script>
+		<!--define:js-->			
+		<script>
+			app.controller("ctrl", function($scope){
+				for(module in app.modules){
+					this[module] = app.modules[module];
+					this[module].parent = this;
+					this[module].scope = $scope;
+					if(this[module].onload){
+						this[module].onload();
+					}
+				}
+				setTimeout(function(){$scope.$digest(function(){});}, 500);
+			});
+		</script>
+		<script src="/loader.js"></script>
+	</body>
+</html>

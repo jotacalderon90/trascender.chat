@@ -1,0 +1,71 @@
+{
+  "_from": "@ionic/pwa-elements",
+  "_id": "@ionic/pwa-elements@1.5.2",
+  "_inBundle": false,
+  "_integrity": "sha512-OMa+el4XjnAx22P6S8CN2GGEfDgMkuwOxE5x5Cd/6ZDfcZKRuP//l4+JLF4YBvfvyPPHvaQLI+Ies7H2OTmAuA==",
+  "_location": "/@ionic/pwa-elements",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ionic/pwa-elements",
+    "name": "@ionic/pwa-elements",
+    "escapedName": "@ionic%2fpwa-elements",
+    "scope": "@ionic",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@ionic/pwa-elements/-/pwa-elements-1.5.2.tgz",
+  "_shasum": "fa09df335edac62b48f350c38b12647310f1b967",
+  "_spec": "@ionic/pwa-elements",
+  "_where": "E:\\laboral\\script\\ionic\\front",
+  "author": {
+    "name": "Ionic Team"
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/ionic-pwa-elements"
+  },
+  "bundleDependencies": false,
+  "collection": "dist/collection/collection-manifest.json",
+  "deprecated": false,
+  "description": "Stencil Component Starter",
+  "devDependencies": {
+    "@stencil/core": "^1.8.11",
+    "@types/jest": "24.0.25",
+    "@types/puppeteer": "1.20.4",
+    "jest": "24.9.0",
+    "jest-cli": "24.9.0",
+    "np": "^5.0.2",
+    "puppeteer": "1.20.0",
+    "workbox-build": "4.3.1"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "homepage": "https://github.com/ionic-team/ionic-pwa-elements",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "name": "@ionic/pwa-elements",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/ionic-pwa-elements.git"
+  },
+  "scripts": {
+    "build": "stencil build",
+    "release": "np",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "version": "npm run build"
+  },
+  "types": "dist/types/index.d.ts",
+  "unpkg": "dist/ionicpwaelements/ionicpwaelements.js",
+  "version": "1.5.2"
+}

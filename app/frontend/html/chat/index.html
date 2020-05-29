@@ -1,0 +1,40 @@
+<!--use:_views/m.main-->
+
+<!--define:title-->
+Trascender - Chat
+<!--/define:title-->
+
+<!--define:css-->
+	<link rel="stylesheet" href="css/chat.css" media="all"/>
+<!--/define:css-->
+
+<!--define:header-->		
+	<!--
+	<script type="module" src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+	<script nomodule src="https://unpkg.com/@ionic/pwa-elements@latest/dist/ionicpwaelements/ionicpwaelements.js"></script>
+	-->
+		
+	<script type="module"	src="js/lib/@ionic/pwa-elements/1.5.2/dist/ionicpwaelements/ionicpwaelements.esm.js"></script>
+	<script nomodule		src="js/lib/@ionic/pwa-elements/1.5.2/dist/ionicpwaelements/ionicpwaelements.js"></script>
+<!--/define:header-->
+
+<!--define:main-->
+	<main>
+		<ul class="list-group" id="chat"></ul>
+	</main>
+	<footer>
+		<div class="input-group">
+			<input type="text" class="form-control" data-ng-model="ctrl.chat.message" placeholder="Escribe un mensaje" data-ng-keypress="ctrl.chat.keypress($event)" />
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="button" data-ng-click="ctrl.chat.camera()">
+					<i class="fa fa-camera"></i>
+				</button>
+			</span>
+		</div>
+	</footer>
+<!--/define:main-->
+
+<!--define:js-->
+	<script src="js/user.js"></script>
+	<script src="js/chat.js"></script>
+<!--/define:js-->

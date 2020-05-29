@@ -17,7 +17,7 @@ let self = function(a){
 //@route('/')
 //@method(['get'])
 self.prototype.render_index = function(req,res,next){
-	res.render("index");
+	res.render("chat/index");
 }
 
 

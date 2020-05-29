@@ -1,0 +1,54 @@
+<!--use:_views/m.main-->
+
+<!--define:title-->
+Login
+<!--/define:title-->
+
+<!--define:header-->	
+	<!--if:doc.config.recaptcha && doc.config.recaptcha.enabled-->
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<!--/if-->
+<!--/define:header-->
+
+<!--define:main-->
+	<form class="container col-md-6 col-md-offset-3" role="form" action="/user/login" method="POST">
+		<div class="page-header">
+			<h1>Ingresar</h1>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<input class="form-control" placeholder="Email" name="email" type="text" autofocus=""/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<input class="form-control" placeholder="Password" name="password" type="password" value=""/>
+			</div>
+		</div>
+		
+		<!--if:doc.config.recaptcha && doc.config.recaptcha.enabled-->
+		<div class="g-recaptcha" data-sitekey="{{data:doc.config.recaptcha.public}}"></div>
+		<br>
+		<!--/if-->
+		
+		<button type="submit" class="btn btn-lg btn-success btn-block" >Ingresar</button>
+		
+		<!--if:doc.config.google && doc.config.google.auth && doc.config.google.auth.enabled-->
+		<a href="{{data:doc.google_url}}" class="btn btn-lg btn-primary btn-block">
+			<img src="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png" height="20"/>
+			Ingresar con Google
+		</a>
+		<!--/if-->
+		
+		<hr>
+		<div class="text-right">
+			<a href="/user/forget">¿Olvidaste tu password?</a>
+		</div>
+	</form>
+<!--/define:main-->
+
+<!--define:js-->
+	<script>
+		document.cookie = "Authorization=null; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	</script>
+<!--/define:js-->
