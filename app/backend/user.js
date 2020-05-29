@@ -24,6 +24,18 @@ var self = function(a){
 
 
 
+self.prototype.removeLogged = async function(req){
+	if(req.user){
+		let user = await this.mongodb.find("user_active",{user_id: req.user._id.toString()});
+		if(user.length==1){
+			await this.mongodb.deleteOne("user_active",user[0]._id);
+		}
+		req.session.destroy();
+	}
+}
+
+
+
 self.prototype.cookie = function(res,cookie){
 	if(this.config.properties.cookie_domain){
 		res.cookie("Authorization", cookie, { domain: this.config.properties.cookie_domain, path: "/", secure: true });
@@ -104,6 +116,7 @@ self.prototype.login = async function(req,res){
 	try{
 		switch(req.method.toLowerCase()){
 			case "get":
+				await this.removeLogged(req);
 				res.render("user/login",{google_url: this.google_url});
 			break;
 			case "post":
@@ -209,11 +222,7 @@ self.prototype.update = async function(req,res){
 //@roles(['user'])
 self.prototype.logout = async function(req,res){
 	try{
-		let user = await this.mongodb.find("user_active",{user_id: req.user._id.toString()});
-		if(user.length==1){
-			await this.mongodb.deleteOne("user_active",user[0]._id);
-		}
-		req.session.destroy();
+		await this.removeLogged(req);
 		if(req.query.xhr){
 			res.send({data: true});
 		}else if(this.config.on && this.config.on.logout){
