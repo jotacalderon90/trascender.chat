@@ -22,6 +22,7 @@
 		"text-to-mp3": "1.0.4",
 		"trascender.render": "0.0.1",
 		"trascender.router": "0.0.4",
-		"unrar": "0.2.0"
+		"unrar": "0.2.0",
+		"web-push": "3.4.4"
 	}
 }

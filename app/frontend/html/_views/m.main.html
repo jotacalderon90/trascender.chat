@@ -18,7 +18,8 @@
 		
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="css/main.css" media="all"/>
+		<link rel="stylesheet" href="css/main.css" media="all"/>>
+		<link rel="stylesheet" href="css/push.css" media="all"/>
 		<!--define:css-->
 		
 		<!--define:header-->
@@ -80,6 +81,12 @@
 										Más <span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu">
+										<li>
+											<a data-ng-click="ctrl.push.mainToggle()">
+												Notificaciones
+											</a>
+										</li>
+										<li role="separator" class="divider"></li>
 										<!--include:user/nav-->
 										<li role="separator" class="divider"></li>
 										<li>
@@ -95,6 +102,7 @@
 				</nav>
 			</header>
 			<!--define:main-->
+			<!--include:_views/push-->
 		</div>
 		
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -112,7 +120,8 @@
 			const host = "{{data:doc.config.properties.host}}";
 			app.modules = {};
 		</script>
-		<!--define:js-->			
+		<script src="js/push.js"></script>
+		<!--define:js-->
 		<script>
 			app.controller("ctrl", function($scope){
 				for(module in app.modules){
@@ -126,6 +135,5 @@
 				setTimeout(function(){$scope.$digest(function(){});}, 500);
 			});
 		</script>
-		<script src="/loader.js"></script>
 	</body>
 </html>

@@ -1,0 +1,12 @@
+#dvPush{
+	position: absolute;
+	width: 100%;
+	height: auto;
+	min-height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	background: white;
+	text-align: justify;
+	display: none;
+}

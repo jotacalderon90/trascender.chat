@@ -1,7 +1,7 @@
 "use strict";
 
-let self = function(application,params){
-	
+let self = function(a){
+	this.dir = a.dir
 }
 
 
@@ -34,17 +34,7 @@ self.prototype.manifest = async function(req,res){
 //@route('/loader.js')
 //@method(['get'])
 self.prototype.loader = async function(req,res){
-	res.set('Content-Type','application/javascript');
-	res.send(""+
-		"if ('serviceWorker' in navigator) {\n"+
-		" 	try{\n"+
-		" 		navigator.serviceWorker.register('/sw.js');\n"+
-		" 		console.log('SW registered');\n"+
-		"	}catch(err){\n"+
-		" 		console.log(err);\n"+
-		" 	}\n"+
-		"}\n"
-	);
+	res.sendFile(this.dir + "/app/frontend/js/lib/pwa/loader.js");
 }
 
 
@@ -52,8 +42,9 @@ self.prototype.loader = async function(req,res){
 //@route('/sw.js')
 //@method(['get'])
 self.prototype.sw = async function(req,res){
-	res.set('Content-Type','application/javascript');
-	res.send("console.log('sw');");
+	res.sendFile(this.dir + "/app/frontend/js/lib/pwa/sw.js");
 }
+
+
 
 module.exports = self;

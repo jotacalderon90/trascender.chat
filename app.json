@@ -33,6 +33,6 @@
 	},
 	"on": {
 		"login": "/",
-		"logout": "/user/login" 
+		"logout": "/user/login"
 	}
 }
