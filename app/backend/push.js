@@ -39,6 +39,7 @@ self.prototype.publickey = async function(req,res){
 self.prototype.subscribe = async function(req,res){
 	try{
 		req.body.created = new Date();
+		req.body.ip = req.real_ip; 
 		await this.mongodb.insertOne("push",req.body);
 		res.send({data: true});
 	}catch(e){
