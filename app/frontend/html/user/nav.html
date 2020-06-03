@@ -10,3 +10,6 @@
 <li data-ng-show="ctrl.user.isLogged">
 	<a href="/user/logout">Cerrar sesión</a>
 </li>
+<li data-ng-show="ctrl.user.isAdmin()">
+	<a href="/push/notificate">Notificar</a>
+</li>

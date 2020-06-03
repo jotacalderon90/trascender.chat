@@ -65,17 +65,25 @@ self.prototype.unsubscribe = async function(req,res){
 
 
 //@route('/push/notificate')
-//@method(['post'])
+//@method(['get','post'])
 //@roles(['admin'])
 self.prototype.notificate = async function(req,res){
 	try{
-		let {title,body} = req.body;
-		let rows = await this.mongodb.find("push");
-		for(let i=0;i<rows.length;i++){
-			webpush.sendNotification(rows[i], JSON.stringify({title,body}));
+		switch(req.method.toLowerCase()){
+			case "get":
+				res.render("push/form");
+			break;
+			case "post":			
+				let {title,body} = req.body;
+				let rows = await this.mongodb.find("push");
+				for(let i=0;i<rows.length;i++){
+					webpush.sendNotification(rows[i].endpoint, JSON.stringify({title,body}));
+				}
+				res.redirect("/push/notificate");
+			break;
 		}
 	}catch(e){
-		res.send({data: null, error: e});
+		res.status(500).render("message",{title: "Error en el Servidor", message: e.toString(), error: 500, class: "danger"});
 	}
 }
 
