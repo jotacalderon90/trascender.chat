@@ -74,10 +74,10 @@ self.prototype.notificate = async function(req,res){
 				res.render("push/form");
 			break;
 			case "post":			
-				let {title,body} = req.body;
+				let {title,body,uri} = req.body;
 				let rows = await this.mongodb.find("push");
 				for(let i=0;i<rows.length;i++){
-					webpush.sendNotification(rows[i], JSON.stringify({title,body}));
+					webpush.sendNotification(rows[i], JSON.stringify({title,body,uri}));
 				}
 				res.redirect("/push/notificate");
 			break;

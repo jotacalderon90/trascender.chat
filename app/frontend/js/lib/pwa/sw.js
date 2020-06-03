@@ -1,52 +1,22 @@
-/*
-*
-*  Push Notifications codelab
-*  Copyright 2015 Google Inc. All rights reserved.
-*
-*  Licensed under the Apache License, Version 2.0 (the "License");
-*  you may not use this file except in compliance with the License.
-*  You may obtain a copy of the License at
-*
-*      https://www.apache.org/licenses/LICENSE-2.0
-*
-*  Unless required by applicable law or agreed to in writing, software
-*  distributed under the License is distributed on an "AS IS" BASIS,
-*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*  See the License for the specific language governing permissions and
-*  limitations under the License
-*
-*/
-
-/* eslint-env browser, serviceworker, es6 */
-
 'use strict';
 self.addEventListener('push', function(event) {
-	/*console.log('[Service Worker] Push Received.');
-	console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-	const title = 'Push Codelab';
+	console.log(event.data.json());
+	const message = event.data.json();
 	const options = {
-		body: 'Yay it works.',
-		icon: 'images/icon.png',
-		badge: 'images/badge.png'
-	};
-	event.waitUntil(self.registration.showNotification(title, options));*/
-	const message = event.data.json(); // 1
-	const options = { // 2
 		body: message.body,
-		data: 'http://localhost:4444',
+		data: message.uri,
+		icon: 'media/img/push/icon.png',
+		badge: 'media/img/push/badge.png',
 		actions: [{
 			action: 'Detail',
 			title: 'Detalles'
 		}]
 	};
-	event.waitUntil(self.registration.showNotification(message.title, options)); // 3
+	event.waitUntil(self.registration.showNotification(message.title, options));
 });
 
 self.addEventListener('notificationclick', function(event) {
 	console.log('Notification click Received.', event.notification.data);
-	event.notification.close(); // 1
-	event.waitUntil(clients.openWindow(event.notification.data)); // 2
-	/*console.log('[Service Worker] Notification click Received.');
 	event.notification.close();
-	event.waitUntil(clients.openWindow('https://developers.google.com/web/'));*/
+	event.waitUntil(clients.openWindow(event.notification.data));
 });
