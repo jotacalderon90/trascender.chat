@@ -9,14 +9,14 @@
 	
 	<div data-ng-show="ctrl.push.subscription==null">
 		<p>Te recomiendo que pinches el botóne de abajo para subscribírese.</p>
-		<button class="btn btn-block btn-primary button" data-ng-click="ctrl.push.subscribe()">Activar notificaciones</button>
+		<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Activar notificaciones</button>
 		<p>Una vez que te subscribas, obtendrás un codigo que viajará desde tu dispositivo, hacia mi servidor, pasando por la internet. Una vez que llegue a mí, lo guardaré en mi base de datos y lo usaré cuando quiera enviarte alguna notificación.
 	</div>
 	
 	
 	<div data-ng-show="ctrl.push.subscription!=null">
 		<p>Ya estas subscrito, espero te mantengas así.</p>
-		<button class="btn btn-block btn-warning button" data-ng-click="ctrl.push.unsubscribe()">Desactivar notificaciones</button>
+		<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Desactivar notificaciones</button>
 		<p>El siguiente código que ha sido generado tiene un formato JSON, ha viajado a mi servidor mediante internet y ha sido guardado en una base de datos.</p>
 		<pre><code class="js-subscription-json"></code></pre>
 	</div>

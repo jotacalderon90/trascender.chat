@@ -32,6 +32,7 @@ app.modules.push = new trascender({
 	},
 	subscribe: async function(){
 		try{
+			document.querySelector('.btn-subscribe').disabled = true;
 			this.subscription = await this.swRegistration.pushManager.subscribe({userVisibleOnly: true,applicationServerKey: this.applicationServerPublicKey});
 			console.log(this.subscription);
 			this.code.innerHTML = JSON.stringify(this.subscription,null,"\r");
@@ -39,12 +40,14 @@ app.modules.push = new trascender({
 			this.scope.$apply();
 			await this.wait(2000);
 			$("#dvPush").fadeToggle();
+			document.querySelector('.btn-subscribe').disabled = false;
 		}catch(e){
 			console.log(e);
 		}
 	},
 	unsubscribe: async function(){
 		try{
+			document.querySelector('.btn-unsubscribe').disabled = true;
 			await this.unsubscribeServer({},this.formatBody(this.subscription));
 			this.subscription.unsubscribe();
 			console.log(this.subscription);
@@ -52,6 +55,7 @@ app.modules.push = new trascender({
 			this.code.innerHTML = "";
 			await this.wait(2000);
 			$("#dvPush").fadeToggle();
+			document.querySelector('.btn-unsubscribe').disabled = false;
 		}catch(e){
 			console.log(e);
 		}

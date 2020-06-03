@@ -21,7 +21,6 @@ app.modules.chat = new trascender({
 		});
 	},
 	onload: async function(){
-		await this.wait(1000);
 		if(this.parent.user && this.parent.user.doc!=null){
 			this.user.nickname = this.parent.user.doc.nickname;
 		}

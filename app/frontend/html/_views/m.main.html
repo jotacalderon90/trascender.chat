@@ -124,15 +124,18 @@
 		<!--define:js-->
 		<script>
 			app.controller("ctrl", function($scope){
-				for(module in app.modules){
-					this[module] = app.modules[module];
-					this[module].parent = this;
-					this[module].scope = $scope;
-					if(this[module].onload){
-						this[module].onload();
+				this.start = async function(){
+					for(module in app.modules){
+						this[module] = app.modules[module];
+						this[module].parent = this;
+						this[module].scope = $scope;
+						if(this[module].onload){
+							await this[module].onload();
+						}
 					}
+					setTimeout(function(){$scope.$digest(function(){});}, 500);
 				}
-				setTimeout(function(){$scope.$digest(function(){});}, 500);
+				this.start();
 			});
 		</script>
 	</body>
