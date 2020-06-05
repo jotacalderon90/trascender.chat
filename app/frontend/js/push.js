@@ -20,7 +20,7 @@ app.modules.push = new trascender({
 			}
 			this.applicationServerPublicKey = await this.read();
 			if(this.applicationServerPublicKey==null){
-				throw("No existe llave p?blica para notificaciones push");
+				throw("No existe llave pública para notificaciones push");
 			}
 			this.mainToggle();
 		}catch(e){
@@ -43,22 +43,37 @@ app.modules.push = new trascender({
 			//await this.wait(2000);
 			//$("#dvPush").fadeToggle();
 		}catch(e){
+			alert("xuxa, hubo un error: " + e.toString());
 			console.log(e);
 		}
 	},
 	unsubscribe: async function(){
 		try{
-			document.querySelector('.btn-unsubscribe').disabled = true;
-			await this.unsubscribeServer({},this.formatBody(this.subscription));
-			this.subscription.unsubscribe();
-			console.log(this.subscription);
-			this.subscription = null;
-			this.code.innerHTML = "";
-			document.querySelector('.btn-unsubscribe').disabled = false;
-			this.scope.$apply();
-			//await this.wait(2000);
-			//$("#dvPush").fadeToggle();
+			if(confirm("Confirma desactivar la notificación?")){
+				if(confirm("está seguro?")){
+					if(confirm("segurísimo?")){
+						let razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","chupalo");
+						if(razon == "chupalo"){
+							alert("chupalo vo");
+						}else{
+							alert(":(");
+						}
+						document.querySelector('.btn-unsubscribe').disabled = true;
+						await this.unsubscribeServer({},this.formatBody(this.subscription));
+						this.subscription.unsubscribe();
+						console.log(this.subscription);
+						this.subscription = null;
+						this.code.innerHTML = "";
+						document.querySelector('.btn-unsubscribe').disabled = false;
+						this.scope.$apply();
+						
+						//await this.wait(2000);
+						//$("#dvPush").fadeToggle();
+					}
+				}
+			}
 		}catch(e){
+			alert("xuxa, hubo un error: " + e.toString());
 			console.log(e);
 		}
 	}

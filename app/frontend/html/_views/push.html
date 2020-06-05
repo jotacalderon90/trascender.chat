@@ -4,21 +4,15 @@
 		<button class="close" data-ng-click="ctrl.push.mainToggle()"><span aria-hidden="true">&times;</span></button>
 	</div>
 	<div class="panel-body">
-  
-	<p>Esta aplicación permite recibir notificaciones push, es decir, mensajes que viajan desde mi servidor hacia su disposivo sin necesidad de que tengas el navegador abierto.</p>
-	
-	<div data-ng-show="ctrl.push.subscription==null">
-		<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Pinchame para activar las notificaciones</button>
-		<p>Una vez que lo pinches, obtendrás un código bien raro más abajo.</p>
-	</div>
-	
-	
-	<div data-ng-show="ctrl.push.subscription!=null">
-		<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Ya está subscrito, espero se mantenga así, pero si no lo deseas, puedes pincharme para desactivarlo</button>
-		<p>El código que está aquí abajo, ha sido generado por el navegador, su formato es JSON y aparte de mostrarse ahí abajo, viajó una copia de él a mi servidor mediante internet y lo he guardado en mi base de datos.</p>
-		<pre><code class="js-subscription-json"></code></pre>
-	</div>
-	
-	
+		<p>Esta aplicación permite recibir notificaciones push, es decir, mensajes que viajan desde mi servidor hacia su disposivo sin necesidad de que tengas el navegador abierto.</p>
+		<div data-ng-show="ctrl.push.subscription==null">
+			<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Pinchame para activar las notificaciones</button>
+			<p>Una vez que lo pinches, obtendrás un código bien raro más abajo.</p>
+		</div>
+		<div data-ng-show="ctrl.push.subscription!=null">
+			<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Ya está subscrito, espero se mantenga así, pero si no lo deseas, puedes pincharme para desactivarlo</button>
+			<p>El código que está aquí abajo, ha sido generado por el navegador, su formato es JSON y aparte de mostrarse ahí abajo, viajó una copia de él a mi servidor mediante internet y lo he guardado en mi base de datos.</p>
+			<pre><code class="js-subscription-json"></code></pre>
+		</div>
 	</div>
 </div>
