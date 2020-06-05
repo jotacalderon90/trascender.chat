@@ -56,6 +56,8 @@ self.prototype.unsubscribe = async function(req,res){
 		let row = await this.mongodb.find("push",{endpoint: req.body.endpoint});
 		if(row.length==1){
 			await this.mongodb.deleteOne("push",row[0]._id);
+			row[0].razon = req.body.razon;
+			await this.mongodb.insertOne("pushd",row[0]);
 		}
 		res.send({data: true});
 	}catch(e){

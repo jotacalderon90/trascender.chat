@@ -52,8 +52,8 @@ app.modules.push = new trascender({
 			if(confirm("Confirma desactivar la notificación?")){
 				if(confirm("está seguro?")){
 					if(confirm("segurísimo?")){
-						let razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","chupalo");
-						if(razon == "chupalo"){
+						this.subscription.razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","chupalo");
+						if(this.subscription.razon == "chupalo"){
 							alert("chupalo vo");
 						}else{
 							alert(":(");
