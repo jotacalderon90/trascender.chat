@@ -1,0 +1,43 @@
+[{
+		"name": "user",
+		"label": "Usuarios",
+		"schema": {
+			"email": "",
+			"password": ""
+		},
+		"service": {
+			"create": {
+				"method": "post",
+				"uri": "/api/user"
+			}
+		},
+		"output": {
+			"email": true,
+			"nickname": true,
+			"roles": true,
+			"notification": "",
+			"ip": ""
+		},
+		"sort": {
+			"email": 1
+		}
+	}, {
+		"name": "user_active",
+		"schema": {
+			"email": ""
+		}
+	}, {
+		"name": "push",
+		"schema": {
+			"ip": "",
+			"nickname": ""
+		}
+	}, {
+		"name": "pushd",
+		"schema": {
+			"ip": "",
+			"nickname": "",
+			"razon": ""
+		}
+	}
+]
