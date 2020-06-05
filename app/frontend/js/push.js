@@ -37,10 +37,10 @@ app.modules.push = new trascender({
 			console.log(this.subscription);
 			this.code.innerHTML = JSON.stringify(this.subscription,null,"\r");
 			await this.subscribeServer({},this.formatBody(this.subscription));
-			this.scope.$apply();
-			await this.wait(2000);
-			$("#dvPush").fadeToggle();
 			document.querySelector('.btn-subscribe').disabled = false;
+			//this.scope.$apply();
+			//await this.wait(2000);
+			//$("#dvPush").fadeToggle();
 		}catch(e){
 			console.log(e);
 		}
@@ -53,9 +53,9 @@ app.modules.push = new trascender({
 			console.log(this.subscription);
 			this.subscription = null;
 			this.code.innerHTML = "";
-			await this.wait(2000);
-			$("#dvPush").fadeToggle();
 			document.querySelector('.btn-unsubscribe').disabled = false;
+			//await this.wait(2000);
+			//$("#dvPush").fadeToggle();
 		}catch(e){
 			console.log(e);
 		}

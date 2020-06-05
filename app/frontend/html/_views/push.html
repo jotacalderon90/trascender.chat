@@ -5,19 +5,17 @@
 	</div>
 	<div class="panel-body">
   
-	<p>Esta aplicación permite recibir notificaciones push, es decir, avisos kls para informarte de cosas.</p>
+	<p>Esta aplicación permite recibir notificaciones push, es decir, mensajes que viajan desde mi servidor hacia su disposivo sin necesidad de que tengas el navegador abierto.</p>
 	
 	<div data-ng-show="ctrl.push.subscription==null">
-		<p>Te recomiendo que pinches el botóne de abajo para subscribírese.</p>
-		<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Activar notificaciones</button>
-		<p>Una vez que te subscribas, obtendrás un codigo que viajará desde tu dispositivo, hacia mi servidor, pasando por la internet. Una vez que llegue a mí, lo guardaré en mi base de datos y lo usaré cuando quiera enviarte alguna notificación.
+		<button class="btn btn-block btn-primary button btn-subscribe" data-ng-click="ctrl.push.subscribe()">Pinchame para activar las notificaciones</button>
+		<p>Una vez que lo pinches, obtendrás un código bien raro más abajo.</p>
 	</div>
 	
 	
 	<div data-ng-show="ctrl.push.subscription!=null">
-		<p>Ya estas subscrito, espero te mantengas así.</p>
-		<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Desactivar notificaciones</button>
-		<p>El siguiente código que ha sido generado tiene un formato JSON, ha viajado a mi servidor mediante internet y ha sido guardado en una base de datos.</p>
+		<button class="btn btn-block btn-warning button btn-unsubscribe" data-ng-click="ctrl.push.unsubscribe()">Ya está subscrito, espero se mantenga así, pero si no lo deseas, puedes pincharme para desactivarlo</button>
+		<p>El código que está aquí abajo, ha sido generado por el navegador, su formato es JSON y aparte de mostrarse ahí abajo, viajó una copia de él a mi servidor mediante internet y lo he guardado en mi base de datos.</p>
 		<pre><code class="js-subscription-json"></code></pre>
 	</div>
 	
