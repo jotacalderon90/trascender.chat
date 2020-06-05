@@ -52,12 +52,7 @@ app.modules.push = new trascender({
 			if(confirm("Confirma desactivar la notificación?")){
 				if(confirm("está seguro?")){
 					if(confirm("segurísimo?")){
-						this.subscription.razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","chupalo");
-						if(this.subscription.razon == "chupalo"){
-							alert("chupalo vo");
-						}else{
-							alert(":(");
-						}
+						this.subscription.razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","no");
 						document.querySelector('.btn-unsubscribe').disabled = true;
 						await this.unsubscribeServer({},this.formatBody(this.subscription));
 						this.subscription.unsubscribe();
