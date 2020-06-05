@@ -39,11 +39,8 @@ app.modules.push = new trascender({
 			await this.subscribeServer({},this.formatBody(this.subscription));
 			document.querySelector('.btn-subscribe').disabled = false;
 			this.scope.$apply();
-			//this.scope.$apply();
-			//await this.wait(2000);
-			//$("#dvPush").fadeToggle();
 		}catch(e){
-			alert("xuxa, hubo un error: " + e.toString());
+			alert("ups, hubo un error: " + e.toString());
 			console.log(e);
 		}
 	},
@@ -52,23 +49,19 @@ app.modules.push = new trascender({
 			if(confirm("Confirma desactivar la notificación?")){
 				if(confirm("está seguro?")){
 					if(confirm("segurísimo?")){
-						this.subscription.razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","no");
+						let razon = prompt("Bueno, lamento los inconvenientes, ¿podría darme una razón?","no");
 						document.querySelector('.btn-unsubscribe').disabled = true;
-						await this.unsubscribeServer({},this.formatBody(this.subscription));
+						await this.unsubscribeServer({},this.formatBody({endpoint: this.subscription.endpoint, razon: razon}));
 						this.subscription.unsubscribe();
-						console.log(this.subscription);
 						this.subscription = null;
 						this.code.innerHTML = "";
 						document.querySelector('.btn-unsubscribe').disabled = false;
 						this.scope.$apply();
-						
-						//await this.wait(2000);
-						//$("#dvPush").fadeToggle();
 					}
 				}
 			}
 		}catch(e){
-			alert("xuxa, hubo un error: " + e.toString());
+			alert("ups, hubo un error: " + e.toString());
 			console.log(e);
 		}
 	}
