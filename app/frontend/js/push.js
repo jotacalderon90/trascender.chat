@@ -38,6 +38,7 @@ app.modules.push = new trascender({
 			this.code.innerHTML = JSON.stringify(this.subscription,null,"\r");
 			await this.subscribeServer({},this.formatBody(this.subscription));
 			document.querySelector('.btn-subscribe').disabled = false;
+			this.scope.$apply();
 			//this.scope.$apply();
 			//await this.wait(2000);
 			//$("#dvPush").fadeToggle();
@@ -54,6 +55,7 @@ app.modules.push = new trascender({
 			this.subscription = null;
 			this.code.innerHTML = "";
 			document.querySelector('.btn-unsubscribe').disabled = false;
+			this.scope.$apply();
 			//await this.wait(2000);
 			//$("#dvPush").fadeToggle();
 		}catch(e){
